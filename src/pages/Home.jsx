@@ -8,6 +8,7 @@ const Home = () => {
   const navigate=useNavigate();
   const { username } = useAuth();
   const [images, setImages] = useState([]);
+  const [query, setQuery] = useState([]);
   const [loading, setLoading] = useState(true); // Add a loading state
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -43,6 +44,22 @@ const Home = () => {
   const handleTakeTest = (recipeId) => {
     navigate(`/recipe/${recipeId}`);
   };
+  const handleChange=async(e)=>{
+    setQuery(e.target.value)
+     
+      try {
+        
+        const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/recipe/search?query=${query}`, {
+          headers: {
+            Authorization: `${username.token}`,
+          },
+        });
+        const data = await response.json();
+        setImages(data);
+      } catch (error) {
+        console.error('Error searching recipes:', error);
+      }
+  }
   
   return (
     <>
@@ -60,7 +77,14 @@ const Home = () => {
     </div>
    
     <div>
-<section className="text-gray-600 body-font">
+      <div className='flex items-center justify-center'>
+      <div className="relative w-2/6 mt-10 ">
+                              <input type="text" id="title" value={query} onChange={handleChange} name="image" placeholder='Search here....'  className="w-full bg-transparent border-b border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-0 text-base outline-none text-gray-400 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out rounded-2xl"/>
+      </div>
+      </div>
+   
+<section className="text-gray-600 mt-2 body-font">
+
   <div className="container px-5 py-24 mx-auto">
     <div className="flex flex-wrap -m-4">
       {images.map((image)=>(

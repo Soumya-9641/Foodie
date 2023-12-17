@@ -15,22 +15,23 @@ export const AuthProvider = ({ children }) => {
       return storedUser ? JSON.parse(storedUser) : null;
     }); 
 
-    const checkTokenExpiration = () => {
-      if (username && username.token) {
-        const decodedToken = jwt_decode(username.token);
-  
-        // Check if the token is expired
-        if (decodedToken.exp * 1000 < Date.now()) {
-          // Token is expired
-          // Log out the user or handle the expiration accordingly
-          setUser(null);
-          localStorage.removeItem('currentUser');
-         // Redirect to the login page or another route
-        }
-      }
-    };
+    
 
     useEffect(() => {
+      const checkTokenExpiration = () => {
+        if (username && username.token) {
+          const decodedToken = jwt_decode(username.token);
+    
+          // Check if the token is expired
+          if (decodedToken.exp * 1000 < Date.now()) {
+            // Token is expired
+            // Log out the user or handle the expiration accordingly
+            setUser(null);
+            localStorage.removeItem('currentUser');
+           // Redirect to the login page or another route
+          }
+        }
+      };
       // Call the checkTokenExpiration function when the component mounts
       checkTokenExpiration();
   
@@ -40,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   
       // Clear the interval when the component unmounts
       return () => clearInterval(intervalId);
-    }, [username]);
+    },[username]);
   
 
     const login = async (formData) => {

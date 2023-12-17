@@ -47,7 +47,7 @@ const Food = () => {
     
 
     fetchTestDetails();
-  }, []);
+  }, [recipeId,token]);
   if (loading) {
     return <p>Loading...</p>;
   }
