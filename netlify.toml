@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_ENV = "production"
+  REACT_APP_API_ENDPOINT="http://foodie-env.eba-egwcndpr.ap-south-1.elasticbeanstalk.com"
