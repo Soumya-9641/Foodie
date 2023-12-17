@@ -24,7 +24,7 @@ function App() {
           <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
                 <div className={`${styles.boxWidth}`}>
                     <Routes>
-                      <Route exact path='/' element={<><Home/></>}/>
+                      <Route path='/' element={<><Home/></>}/>
                       <Route  path='/login' element={<><Login/></>}/>
                       <Route path='/signup' element={<><Signup/></>}/>
                       <Route  path='/create' element={<><CreateFood/></>}/>

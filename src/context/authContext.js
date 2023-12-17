@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
      const password=formData.password
      const user={email,password}
       try {
-        const response = await fetch('http://localhost:9000/user/login', {
+        const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/user/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
