@@ -25,12 +25,12 @@ const Login = () => {
       
       <form type="POST" className="form" >
         <div className="input-container">
-          <label className="label">Username: </label>
+          <label className="label">Email: </label>
           <input
             type="text"
             name="email"
             className="input"
-            placeholder="Username"
+            placeholder="Email.."
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           />
